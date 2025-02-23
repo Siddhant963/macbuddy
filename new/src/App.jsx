@@ -1,36 +1,45 @@
-import React from 'react'
-import Navbar from './assets/Components/Navbar'
-import PetCareSlider from './assets/Components/PetCareSlider'
-import WelcomeSection from './assets/Components/WelcomSection'
-import ServicesSection from './assets/Components/ServicesSection'
-import AppointmentForm from './assets/AppointmentForm'
-import Services from './assets/Services'
-import TeamSection from './assets/Components/TeamSection'
-import PetCareStats from './PetCareStats'
-import DonationSection from './assets/Components/DonationSection'
-import FeaturedVideo from './assets/Components/FeaturedVideo'
-import Testimonial from './assets/Components/Testimonial'
-import EventsSection from './assets/Components/EventsSection'
-import Footer from './assets/Components/Footer'
+import React, { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from './Components/Navbar';
+import Home from './Pages/Home';
+import About from './Pages/About';
+import Servicespage from './Pages/Servicespage';
+import Blog from './Pages/Blog';
+import Contact from './Pages/Contact';
+import Shop from './Pages/Shop';
+import Cartpage from './Pages/Cartpage';
+import { CartProvider } from './Components/CartContext';
+
+
 
 
 const App = () => {
+  const [cartItems, setCartItems] = useState([]);
+
+  const addToCart = (product) => {
+    setCartItems([...cartItems, product]);
+  };
+
+  const removeFromCart = (index) => {
+    setCartItems(cartItems.filter((_, i) => i !== index));
+  };
+  useState
   return (
-    <>
-    <Navbar />
-    <PetCareSlider />
-    <WelcomeSection />
-    <ServicesSection />
-    <Services />
-    <AppointmentForm />
-    <TeamSection />
-    <PetCareStats />
-    <DonationSection />
-    <FeaturedVideo />
-    <Testimonial />
-    <EventsSection />
-    <Footer />
-    </>
+    <CartProvider>
+    <Router>
+    <Navbar/>
+    <Routes>
+    <Route path="/" element={<Home />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/services" element={<Servicespage />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/cart" element={<Cartpage />} />
+    </Routes>
+    </Router>
+    </CartProvider>
   )
 }
 

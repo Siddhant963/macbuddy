@@ -1,9 +1,16 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import { FaTwitter, FaFacebookF, FaGooglePlusG, FaYoutube, FaPinterestP, FaPhone, FaEnvelope, FaMapMarkerAlt, FaBars, FaTimes, FaSearch } from "react-icons/fa";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+
+  // Function to handle login button click
+  const handleLogin = () => {
+    // Add your login logic here
+    console.log("Login button clicked");
+  };
 
   return (
     <header className="fixed top-0 left-0 w-full z-50">
@@ -24,7 +31,10 @@ const Navbar = () => {
           </span>
         </div>
         <div className="flex items-center space-x-4">
-          <button className="bg-white text-black px-4 py-1 rounded-full font-semibold">
+          <button
+            onClick={handleLogin}
+            className="bg-white text-black px-4 py-1 rounded-full font-semibold"
+          >
             LOGIN
           </button>
           <FaTwitter className="cursor-pointer hover:text-gray-300" />
@@ -50,7 +60,7 @@ const Navbar = () => {
               key={item}
               className="text-black hover:text-yellow-500 cursor-pointer transition duration-300"
             >
-              {item}
+              <Link to={`/${item.toLowerCase()}`}>{item}</Link>
             </li>
           ))}
           {/* Search Icon & Input */}
@@ -85,7 +95,7 @@ const Navbar = () => {
               key={item}
               className="text-white hover:text-yellow-500 cursor-pointer font-semibold transition duration-300"
             >
-              {item}
+              <Link to={`/${item.toLowerCase()}`}>{item}</Link>
             </div>
           ))}
           {/* Mobile Search Icon & Input */}

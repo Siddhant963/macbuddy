@@ -35,7 +35,7 @@ const WelcomeSection = () => {
           <img
             src="https://i.pinimg.com/736x/fb/33/5b/fb335b46d9dcf4859308b416da6600a3.jpg"
             alt="Pet Care"
-            className="rounded-lg shadow-lg w-64 h-64 md:w-80 md:h-80 object-cover"
+            className="rounded-lg shadow-lg w-64 h-64 md:w-full md:h-100 object-cover"
           />
         </motion.div>
 
